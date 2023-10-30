@@ -1,9 +1,7 @@
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-//Избегание магических чисел
-//В классе "Main" в меню используются числовые значения для выбора опций.
-// Эту проблему можно решить, создавать константы с понятными именами для каждой опции меню.
+
 public class Main {
     public static void main(String[] args) {
         Store store = new Store();
