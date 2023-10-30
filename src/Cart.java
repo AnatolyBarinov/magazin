@@ -3,21 +3,34 @@ import java.util.List;
 
 public class Cart {
     private List<Product> items;
-    private double totalPrice;
+    private static final int MAX_CART_ITEMS = 10;
 
     public Cart() {
         items = new ArrayList<>();
-        totalPrice = 0;
     }
 
-    public void addItem(Product product) {
-        items.add(product);
-        totalPrice += product.getPrice();
+    public boolean addItem(Product item) {
+        if (items.size() < MAX_CART_ITEMS) {
+            items.add(item);
+            return true;
+        } else {
+            System.out.println("Корзина достигла максимального количества товаров.");
+            return false;
+        }
     }
 
-    public void removeItem(Product product) {
-        items.remove(product);
-        totalPrice -= product.getPrice();
+    public boolean removeItem(Product item) {
+        if (items.contains(item)) {
+            items.remove(item);
+            return true;
+        } else {
+            System.out.println("Товар не найден в корзине.");
+            return false;
+        }
+    }
+
+    public void clearCart() {
+        items.clear();
     }
 
     public List<Product> getItems() {
@@ -25,31 +38,10 @@ public class Cart {
     }
 
     public double getTotalPrice() {
+        double totalPrice = 0;
+        for (Product item : items) {
+            totalPrice += item.getPrice();
+        }
         return totalPrice;
     }
-
-    public void clearCart() {
-        items.clear();
-        totalPrice = 0;
-    }
-
-    // Дополнительные методы для возврата, повторного заказа и других функциональностей
-
-    public void returnItem(Product product) {
-        if (items.contains(product)) {
-            items.remove(product);
-            totalPrice -= product.getPrice();
-        }
-    }
-
-    public void repeatOrder(Store store, List<Product> products) {
-        for (Product product : products) {
-            if (store.getAllProducts().contains(product)) {
-                items.add(product);
-                totalPrice += product.getPrice();
-            }
-        }
-    }
-
-    // Дополнительные методы и функциональности
 }
