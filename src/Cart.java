@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-//SOLID Принцип подстановки Барбары Лисков
-// класс "Cart" может использовать любой объект типа "Product"
 
 public class Cart {
     private List<Product> items;
